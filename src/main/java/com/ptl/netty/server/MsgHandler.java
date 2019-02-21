@@ -19,6 +19,18 @@ public class MsgHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf in = (ByteBuf) msg;
+
+        if (in.hasArray()){
+            byte[] bytes = in.array();
+            for (int i = 0 ; i < bytes.length ; i ++){
+                System.out.println(i);
+            }
+        }
+
+        for (int i = 0 ; i< in.capacity() ; i++){
+            byte b = in.getByte(i);
+            System.out.println((char) b);
+        }
         try {
             while (in.isReadable()) { // (1)
                 System.out.print((char) in.readByte());
