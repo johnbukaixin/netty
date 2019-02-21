@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.util.CharsetUtil;
+import io.netty.util.ReferenceCountUtil;
 
 import java.nio.charset.Charset;
 import java.util.concurrent.Executor;
@@ -54,6 +55,9 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
         //写进另外一个线程
         executor.execute(writer);        //5
+
+        //ByteBuf 上使用了资源池，所以当执行释放资源时可以减少内存的消耗。
+        ReferenceCountUtil.release(msg);
 
     }
 

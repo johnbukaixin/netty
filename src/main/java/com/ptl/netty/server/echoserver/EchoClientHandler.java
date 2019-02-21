@@ -9,7 +9,10 @@ import io.netty.util.CharsetUtil;
 
 /**
  * created by panta on 2019/2/14.
+ *Netty 用一个 WARN-level 日志条目记录未释放的资源,使其能相当简单地找到代码中的违规实例。然而,由于手工管理资源会很繁琐,您可以通过使用 SimpleChannelInboundHandler 简化问题
+ * 1.扩展 SimpleChannelInboundHandler
  *
+ * 2.不需做特别的释放资源的动作
  * @author panta
  */
 @ChannelHandler.Sharable
