@@ -55,7 +55,8 @@ public class EchoServer {
 
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-                        ch.pipeline().addLast(new EchoServerHandler());
+                        ch.pipeline().addLast(new EchoServerHandler())
+                                .addLast("encoder",new ShortToByteEncoder());
                     }
                 });
         try {
